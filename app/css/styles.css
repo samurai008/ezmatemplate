@@ -3858,7 +3858,7 @@ a.bg-dark:focus, a.bg-dark:hover {
   border-top-left-radius: 0.25rem !important;
   border-bottom-left-radius: 0.25rem !important; }
 
-.rounded-circle {
+.rounded-circle, .carousel-wrapper .control-bg, .carousel-wrapper #next, .carousel-wrapper #prev {
   border-radius: 50%; }
 
 .rounded-0, .login-wrapper form .form-control, .btn-dark {
@@ -4610,7 +4610,7 @@ a.bg-dark:focus, a.bg-dark:hover {
 .p-1, .date-control {
   padding: 0.25rem !important; }
 
-.pt-1,
+.pt-1, .carousel-wrapper .parent .block .prod-title,
 .py-1 {
   padding-top: 0.25rem !important; }
 
@@ -4626,7 +4626,7 @@ a.bg-dark:focus, a.bg-dark:hover {
 .px-1 {
   padding-left: 0.25rem !important; }
 
-.p-2, .login-wrapper > div > div {
+.p-2, .login-wrapper > div > div, .carousel-wrapper .control-bg, .carousel-wrapper #next, .carousel-wrapper #prev {
   padding: 0.5rem !important; }
 
 .pt-2,
@@ -4709,7 +4709,7 @@ a.bg-dark:focus, a.bg-dark:hover {
 .my-auto {
   margin-top: auto !important; }
 
-.mr-auto, .title-underline-center::after,
+.mr-auto, .title-underline-center::after, .carousel-wrapper,
 .mx-auto {
   margin-right: auto !important; }
 
@@ -4717,7 +4717,7 @@ a.bg-dark:focus, a.bg-dark:hover {
 .my-auto {
   margin-bottom: auto !important; }
 
-.ml-auto, .title-underline-center::after,
+.ml-auto, .title-underline-center::after, .carousel-wrapper,
 .mx-auto {
   margin-left: auto !important; }
 
@@ -5474,7 +5474,7 @@ a.bg-dark:focus, a.bg-dark:hover {
 .text-right {
   text-align: right !important; }
 
-.text-center, .title-underline-center, .date-control {
+.text-center, .title-underline-center, .date-control, .carousel-wrapper .parent .block .prod-title {
   text-align: center !important; }
 
 @media (min-width: 576px) {
@@ -5797,25 +5797,46 @@ label:hover:before {
 .carousel-wrapper {
   max-width: 500px;
   position: relative; }
+  @media (max-width: 767px) {
+    .carousel-wrapper {
+      max-width: 300px; } }
   .carousel-wrapper .parent {
     white-space: nowrap;
     overflow-x: hidden;
     padding-left: 90px; }
+    @media (max-width: 767px) {
+      .carousel-wrapper .parent {
+        padding: 0; } }
     .carousel-wrapper .parent .block {
       width: 300px;
       height: 400px;
       background: red;
       display: inline-block;
       opacity: 0.2;
-      transform: scale(0.8); }
+      transform: scale(0.8);
+      position: relative; }
+      .carousel-wrapper .parent .block .prod-fav-icon {
+        position: absolute;
+        color: #fff;
+        right: 2%;
+        top: 2%; }
+      .carousel-wrapper .parent .block .prod-title {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: #fff; }
     .carousel-wrapper .parent .active {
       opacity: 1;
       transform: scale(1); }
+  .carousel-wrapper .mt-2em, .carousel-wrapper #next, .carousel-wrapper #prev {
+    margin-top: -51px; }
+  .carousel-wrapper .control-bg, .carousel-wrapper #next, .carousel-wrapper #prev {
+    background: #fff; }
   .carousel-wrapper #next {
     position: absolute;
     top: 50%;
-    right: 5%; }
+    right: -5%; }
   .carousel-wrapper #prev {
     position: absolute;
     top: 50%;
-    left: 5%; }
+    left: -5%; }

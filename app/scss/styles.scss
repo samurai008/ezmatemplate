@@ -402,8 +402,9 @@ label:hover:before {
     }
 
     .block {
+      cursor: pointer;
       width: 300px;
-      height: 400px;
+      height: 500px;
       background: red;
       display: inline-block;
       opacity: 0.2;
@@ -412,9 +413,11 @@ label:hover:before {
 
       .prod-fav-icon {
         position: absolute;
-        color: $secondary;
         right: 2%;
         top: 2%;
+        a {
+          color: $secondary;
+        }
       }
 
       .prod-title {
@@ -444,6 +447,10 @@ label:hover:before {
     background: $secondary;
   }
 
+  button:focus {
+    outline: none;
+  }
+
   #next {
     position: absolute;
     top: 50%;
@@ -462,4 +469,83 @@ label:hover:before {
 }
 
 
+.preview-box {
+  max-width: 300px;
+  @extend .p-2;
+  @extend .mr-auto;
+  @extend .ml-auto;
+  border: 1px solid lightgrey;
+  div {
+    width: 100%;
+    height: 400px;
+    background: red;
+  }
+}
 
+.product-text-info {
+
+  @include media-breakpoint-down(sm) {
+    & {
+      text-align: center;
+      padding-top: 2rem;
+      .title-underline::after {
+        margin: 0 auto;
+      }
+      p:nth-of-type(3) {
+        text-align: left;
+      }
+    }
+  }
+
+  h6, p {
+    color: grey;
+  }
+
+  .btn-cart {
+    @extend .pl-4;
+    @extend .pr-4;
+    @extend .pt-1;
+    @extend .pb-1;
+    @extend .border;
+    @extend .uppercase;
+    @extend .rounded-0;
+    background: none;
+    cursor: pointer;
+  }
+}
+
+.product-thumbnails {
+  @extend .pt-2;
+  @extend .mr-auto;
+  @extend .ml-auto;
+  width: 300px;
+
+  div {
+    @extend .d-inline-block;
+    width: 90px;
+    height: 150px;
+    background: yellow;
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-right: 12px;
+    }
+  }
+
+}
+
+.visible-sm-up, .visible-sm-down {
+  display: none;
+}
+
+@include media-breakpoint-up(sm) {
+  .visible-sm-up {
+    display: block;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .visible-sm-down {
+    display: block;
+  }
+}

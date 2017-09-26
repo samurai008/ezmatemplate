@@ -7,6 +7,8 @@
     <title>EZMA</title>
     <link href="css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
 </head>
 
 <body>
@@ -44,52 +46,45 @@
 
     </div>
 
-    <div class="title-underline-center mt-4 mb-4">
-        sorbet
-    </div>
 
-    <div class="carousel-wrapper">
-        <div class="parent">
-            <div class="block active">
-                <div class="prod-fav-icon">
-                    <a href="#"><i class="fa fa-heart-o fa-lg" aria-hidden="true"></i></a>
+    <div class="container mt-4 mb-2">
+        <div class="visible-sm-down">
+                <h2 class="title-underline-center">coral</h2>
+                <h6 class="text-center">sorbet</h6>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <div class="preview-box">
+                    <div></div>
                 </div>
-                <div class="prod-title">
-                    <h3>coral</h3>
-                    <h5>inr 1000</h5>
-                </div>
-            </div>
-            <div class="block">
-                <div class="prod-fav-icon">
-                    <a href="#"><i class="fa fa-heart-o fa-lg" aria-hidden="true"></i></a>
-                </div>
-                <div class="prod-title">
-                    <h3>coral</h3>
-                    <h5>inr 1000</h5>
+                <div class="product-thumbnails">
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
             </div>
-            <div class="block">
-                <div class="prod-fav-icon">
-                    <a href="#"><i class="fa fa-heart-o fa-lg" aria-hidden="true"></i></a>
+            <div class="col-12 col-sm-6 product-text-info d-flex flex-column">
+                <h2 class="title-underline visible-sm-up">coral</h2>
+                <h6 class="visible-sm-up">sorbet</h6>
+
+                <h6 class="mt-4 mb-4">in stock</h6>
+
+                <h4>inr 1000</h4>
+
+                <p class="mt-4 mb-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad deserunt iure neque architecto quis ratione deleniti perspiciatis.
+                </p>
+                <p>100% CASHMERE</p>
+                <p>SIZE: </p>
+
+                <div>
+                    <button class="btn btn-cart">add to cart</button>
+                    <a href="#" class="ml-2"><i class="fa fa-heart-o fa-lg" aria-hidden="true"></i></a>
                 </div>
-                <div class="prod-title">
-                    <h3>coral</h3>
-                    <h5>inr 1000</h5>
-                </div>
-            </div>
-            <div class="block">
-                <div class="prod-fav-icon">
-                    <a href="#"><i class="fa fa-heart-o fa-lg" aria-hidden="true"></i></a>
-                </div>
-                <div class="prod-title">
-                    <h3>coral</h3>
-                    <h5>inr 1000</h5>
-                </div>
+
+                <div class="pt-4 mt-sm-auto pt-sm-0"><a href="#">More from Sorbet</a></div>
             </div>
         </div>
-
-        <button id="next" class="btn-none"><i class="fa fa-arrow-right fa-2x"></i></button>
-        <button id="prev" class="btn-none"><i class="fa fa-arrow-left fa-2x"></i></button>
     </div>
 
     <div class="footer">
@@ -141,74 +136,7 @@
     </div>
 
     <script src="js/bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.1.0/anime.min.js"></script>
-    <script>
-        var el = document.querySelectorAll('.parent .block');
-        var next = document.querySelector('#next');
-        var prev = document.querySelector('#prev');
-
-        next.addEventListener('click', newactiveitem);
-        prev.addEventListener('click', prevactiveitem);
-
-
-        function carouselnodes() {
-            var elm = document.querySelector('.parent');
-
-            var cnodes = elm.childNodes;
-            var nodes = [];
-            cnodes.forEach((e, i) => {
-                if (i % 2 != 0)
-                    nodes.push(e);
-            });
-
-            return nodes;
-        }
-
-        function translate300(i) {
-            var present = document.querySelector('.active');
-            var trans = anime({
-                targets: el,
-                translateX: i,
-                scale: 0.8
-            });
-            var p = anime({
-                targets: present,
-                translateX: i,
-                scale: 1,
-            })
-        }
-
-
-
-        function prevactiveitem() {
-            var newnodes = carouselnodes();
-            var active = document.querySelector('.active');
-
-            for (i = 0; i < newnodes.length; i++) {
-                if (active == newnodes[i] && newnodes[i - 1]) {
-                    newnodes[i].classList.remove('active');
-                    newnodes[i - 1].classList.add('active');
-                    new translate300(((i) * (-300)) + 300);
-                }
-            }
-
-        }
-
-        function newactiveitem() {
-            var newnodes = carouselnodes();
-            var active = document.querySelector('.active');
-
-            for (i = 0; i < newnodes.length; i++) {
-                if (active == newnodes[i] && newnodes[i + 1]) {
-                    newnodes[i].classList.remove('active');
-                    newnodes[i + 1].classList.add('active');
-                    new translate300(((i) * (-300)) - 300);
-
-                }
-            }
-
-        }
-    </script>
+    <script src="js/owl.carousel.min.js"></script>
 </body>
 
 </html>

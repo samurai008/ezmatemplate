@@ -44,18 +44,52 @@
 
     </div>
 
+    <div class="title-underline-center mt-4 mb-4">
+        sorbet
+    </div>
 
     <div class="carousel-wrapper">
         <div class="parent">
-            <div class="block active"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
+            <div class="block active">
+                <div class="prod-fav-icon">
+                    <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
+                </div>
+                <div class="prod-title">
+                    <h3>coral</h3>
+                    <h5>inr 1000</h5>
+                </div>
+            </div>
+            <div class="block">
+                <div class="prod-fav-icon">
+                    <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
+                </div>
+                <div class="prod-title">
+                    <h3>coral</h3>
+                    <h5>inr 1000</h5>
+                </div>
+            </div>
+            <div class="block">
+                <div class="prod-fav-icon">
+                    <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
+                </div>
+                <div class="prod-title">
+                    <h3>coral</h3>
+                    <h5>inr 1000</h5>
+                </div>
+            </div>
+            <div class="block">
+                <div class="prod-fav-icon">
+                    <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
+                </div>
+                <div class="prod-title">
+                    <h3>coral</h3>
+                    <h5>inr 1000</h5>
+                </div>
+            </div>
         </div>
 
-        <button id="next" class="btn-none"><i class="fa fa-arrow-right"></i></button>
-        <button id="prev" class="btn-none"><i class="fa fa-arrow-left"></i></button>
+        <button id="next" class="btn-none"><i class="fa fa-arrow-right fa-2x"></i></button>
+        <button id="prev" class="btn-none"><i class="fa fa-arrow-left fa-2x"></i></button>
     </div>
 
     <div class="footer">
@@ -131,10 +165,17 @@
         }
 
         function translate300(i) {
+            var present = document.querySelector('.active');
             var trans = anime({
                 targets: el,
                 translateX: i,
+                scale: 0.8
             });
+            var p = anime({
+                targets: present,
+                translateX: i,
+                scale: 1,
+            })
         }
 
 

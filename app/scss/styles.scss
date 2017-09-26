@@ -378,13 +378,28 @@ label:hover:before {
 }
 
 .carousel-wrapper {
+
+  @include media-breakpoint-down(sm) {
+    & {
+      max-width: 300px;
+    }
+  }
+
   max-width: 500px;
   position: relative;
+  @extend .mr-auto;
+  @extend .ml-auto;
 
   .parent {
     white-space: nowrap;
     overflow-x: hidden;
     padding-left: 90px;
+
+    @include media-breakpoint-down(sm) {
+      & {
+        padding: 0;
+      }
+    }
 
     .block {
       width: 300px;
@@ -393,6 +408,23 @@ label:hover:before {
       display: inline-block;
       opacity: 0.2;
       transform: scale(0.8);
+      position: relative;
+
+      .prod-fav-icon {
+        position: absolute;
+        color: $secondary;
+        right: 2%;
+        top: 2%;
+      }
+
+      .prod-title {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: $secondary;
+        @extend .pt-1;
+        @extend .text-center;
+      }
     }
 
     .active {
@@ -402,16 +434,30 @@ label:hover:before {
     
   }
 
+  .mt-2em {
+    margin-top: -51px;
+  }
+
+  .control-bg {
+    @extend .rounded-circle;
+    @extend .p-2;
+    background: $secondary;
+  }
+
   #next {
     position: absolute;
     top: 50%;
-    right: 5%;
+    right: -5%;
+    @extend .mt-2em;
+    @extend .control-bg;
   }
 
   #prev {
     position: absolute;
     top: 50%;
-    left: 5%;
+    left: -5%;
+    @extend .mt-2em;
+    @extend .control-bg;
   }
 }
 

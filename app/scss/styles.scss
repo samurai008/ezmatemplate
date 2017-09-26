@@ -1,0 +1,419 @@
+// Apply a natural box layout model to all elements
+// but allowing components to change
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+@import "../../node_modules/tether/src/css/tether";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import url('https://fonts.googleapis.com/css?family=Ropa+Sans');
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+div {
+  font-family: 'Ropa Sans' !important;
+}
+
+$primary: #000;
+$secondary: #fff;
+$primary-fade: #737275;
+$btn-color-dark: #737275;
+.uppercase {
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend .uppercase;
+}
+
+.title-underline {
+  @extend .h3;
+  @extend .uppercase;
+  &::after {
+    display: block;
+    content: '';
+    border: 2.5px solid $primary;
+    width: 5%;
+    @extend .mt-2;
+  }
+}
+
+.title-underline-center {
+  @extend .title-underline;
+  @extend .text-center;
+  &::after {
+    @extend .ml-auto;
+    @extend .mr-auto;
+  }
+}
+
+//Links Mixin
+@mixin links ($link,
+$visited,
+$hover,
+$active) {
+  & {
+    color: $link;
+    &:visited {
+      color: $visited;
+    }
+    &:hover {
+      color: $hover;
+    }
+    &:active,
+    &:focus {
+      color: $active;
+      text-decoration: none;
+    }
+  }
+}
+
+a {
+  @include links($primary,
+  $primary,
+  $primary-fade,
+  $primary-fade);
+}
+
+@mixin border-mixin($top,
+$bottom,
+$left,
+$right,
+$color:#000,
+$radius: 0) {
+  border-top: $top solid $color;
+  border-bottom: $bottom solid $color;
+  border-left: $left solid $color;
+  border-right: $right solid $color;
+  border-radius: $radius !important;
+}
+
+@mixin abs-pos($prop,
+$val:0) {
+  position: absolute;
+  @if $prop==top {
+    top: $val;
+  }
+  @else if $prop==right {
+    right: $val;
+  }
+  @else if $prop==bottom {
+    bottom: $val;
+  }
+  @else if $prop==left {
+    left: $val;
+  }
+  @else {
+    top: $val;
+    right: $val;
+    bottom: $val;
+    left: $val;
+  }
+}
+
+.container-rel {
+  position: relative;
+  &-title {
+    @include abs-pos(bottom,
+    0);
+    @extend .p-4;
+    text-transform: uppercase;
+    color: $secondary;
+    @extend .h5;
+    @include media-breakpoint-up(md) {
+      & {
+        @include abs-pos(left,
+        5%);
+        font-size: 225%;
+        max-width: percentage(1/3);
+      }
+    }
+  }
+}
+
+.nav-container {
+  @include border-mixin(0px,
+  1px,
+  0px,
+  0px);
+}
+
+.nav-item {
+  text-transform: uppercase;
+}
+
+.cart-btn {
+  background: #fff;
+}
+
+.nav-list {
+  .list-inline-item:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+.highlight-card {
+  background: #e7e7e7;
+  @extend .uppercase;
+  @extend .p-4;
+}
+
+$footer-bg: #737275;
+.footer {
+  @extend .mt-4;
+  @extend .pt-4;
+  @extend .pb-4;
+  background: $footer-bg;
+  & a {
+    color: $secondary;
+    text-transform: uppercase;
+  }
+  .rights {
+    color: $secondary;
+  }
+  @include media-breakpoint-down(sm) {
+    & a {
+      font-size: 70%;
+    }
+    & img {
+      max-width: 25%;
+    }
+    &>div>div>div.col-md-9 {
+      margin-top: 5%;
+      padding-bottom: 5%;
+      @include border-mixin(0px,
+      1px,
+      0px,
+      0px,
+      $secondary,
+      0);
+    }
+    .footer-icons {
+      margin-top: 5%;
+    }
+  }
+  @include media-breakpoint-up(md) {
+    &>div>div {
+      padding-bottom: 5%;
+      @include border-mixin(0px,
+      1px,
+      0px,
+      0px,
+      $secondary,
+      0);
+    }
+    .footer-icons {
+      &>div {
+        width: 35px !important;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .text-md-down-center {
+    text-align: center;
+  }
+}
+
+.login-wrapper {
+  &>div>div {
+    &:first-child {
+      @extend .mr-1;
+    }
+    @extend .p-2;
+  }
+  & form {
+    @extend .p-4;
+    & label {
+      @extend .uppercase;
+      &::after {
+          content: '*'
+      }
+    }
+    & .form-control {
+      @extend .rounded-0;
+    }
+  }
+}
+
+.date-control {
+    width: 50px;
+    height: 50px;
+    @extend .p-1;
+    @extend .text-center;
+}
+
+.btn-dark {
+  @extend .btn;
+  @extend .rounded-0;
+  @extend .uppercase;
+  @extend .d-block;
+  padding: 1rem 4rem;
+}
+
+// check box styling here 
+
+/* Base for label styling */
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+
+[type="checkbox"]:not(:checked)+label,
+[type="checkbox"]:checked+label {
+  position: relative;
+  padding-left: 1.95em;
+  cursor: pointer;
+}
+
+
+/* checkbox aspect */
+
+[type="checkbox"]:not(:checked)+label:before,
+[type="checkbox"]:checked+label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.25em;
+  height: 1.25em;
+  border: 2px solid #ccc;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  border: 2px solid #000;
+}
+
+
+/* checked mark aspect */
+
+[type="checkbox"]:not(:checked)+label:after,
+[type="checkbox"]:checked+label:after {
+  content: '✖';
+  position: absolute;
+  top: .2em;
+  left: .3em;
+  font-size: 1em;
+  line-height: 1;
+  color: $primary;
+  transition: all .2s;
+}
+
+
+/* checked mark aspect changes */
+
+[type="checkbox"]:not(:checked)+label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+
+[type="checkbox"]:checked+label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* disabled checkbox */
+
+[type="checkbox"]:disabled:not(:checked)+label:before,
+[type="checkbox"]:disabled:checked+label:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+
+[type="checkbox"]:disabled:checked+label:after {
+  color: #999;
+}
+
+[type="checkbox"]:disabled+label {
+  color: #aaa;
+}
+
+
+/* accessibility */
+
+[type="checkbox"]:checked:focus+label:before,
+[type="checkbox"]:not(:checked):focus+label:before {
+  border: 2px solid lightgrey;
+}
+
+
+/* hover style just for information */
+
+label:hover:before {
+  border: 2px solid #4778d9 !important;
+}
+
+// check box styling ends here
+
+.btn-none {
+  background: none;
+  @extend .border-0;
+  
+  &:focus {
+    @extend .border-0;
+  }
+}
+
+.carousel-wrapper {
+  max-width: 500px;
+  position: relative;
+
+  .parent {
+    white-space: nowrap;
+    overflow-x: hidden;
+    padding-left: 90px;
+
+    .block {
+      width: 300px;
+      height: 400px;
+      background: red;
+      display: inline-block;
+      opacity: 0.2;
+      transform: scale(0.8);
+    }
+
+    .active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+  }
+
+  #next {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+  }
+
+  #prev {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+  }
+}
+
+
+

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>EZMA</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+
+    <div class="container d-flex justify-content-center p-2 mt-2 mb-2">
+        <div class="text-center">
+            <a href="#"><img src="images/logo.jpg" class="w-25"></a>
+        </div>
+    </div>
+
+
+    <div class="container nav-container d-flex flex-column flex-md-row justify-content-around p-2 mt-2 mb-2">
+
+        <div class="p-2 text-center">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="login.html" class="uppercase">login</a></li>
+                <li class="list-inline-item">/</li>
+                <li class="list-inline-item"><a href="#" class="uppercase">register</a></li>
+            </ul>
+        </div>
+        <div class="p-2 text-center">
+            <ul class="list-inline nav-list">
+                <li class="list-inline-item"><a href="#" class="uppercase">our story</a></li>
+                <li class="list-inline-item"><a href="#" class="uppercase">collection</a></li>
+                <li class="list-inline-item"><a href="#" class="uppercase">services</a></li>
+            </ul>
+        </div>
+        <div class="p-2 text-center">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#" class="uppercase"><i class="fa fa-search"></i></a></li>
+                <li class="list-inline-item"><a href="#" class="uppercase">cart (0)</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="carousel-wrapper">
+        <div class="parent">
+            <div class="block active"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+
+        <button id="next" class="btn-none"><i class="fa fa-arrow-right"></i></button>
+        <button id="prev" class="btn-none"><i class="fa fa-arrow-left"></i></button>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+
+            <div class="row d-flex align-items-center">
+                <div class="col-12 col-md-3">
+                    <a href="#" class="d-block text-center">
+                            <img src="images/logo-white.png" class="img-fluid">
+                        </a>
+                </div>
+                <div class="col-12 col-md-9">
+                    <div class="row d-flex justify-content-around">
+                        <div class="col-3 col-sm-3 col-md-3">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#">find us</a></li>
+                                <li><a href="#">store locator</a></li>
+                                <li><a href="#">contact us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-3 col-sm-3 col-md-3">
+                            <ul class="list-unstyled ml-auto mr-auto mb-0">
+                                <li><a href="#">information</a></li>
+                                <li><a href="#">shipping &amp; returns</a></li>
+                                <li><a href="#">terms &amp; privacy</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-3 col-sm-3 col-md-3">
+                            <ul class="list-unstyled ml-auto mr-auto mb-0">
+                                <li><a href="#">corporate</a></li>
+                                <li><a href="#">corporate information</a></li>
+                                <li><a href="#">career</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-md-flex justify-content-md-between align-items-center text-md-down-center mt-2 pt-4 mb-4 border-0">
+                <div class="rights">&copy; SOUFFLE. All rights reserved.</div>
+                <div class="footer-icons">
+                    <div class="d-inline-block"><a href="#"><img src="images/we-chat.png" class="img-fluid"></a></div>
+                    <div class="d-inline-block"><a href="#"><img src="images/insta.png" class="img-fluid"></a></div>
+                    <div class="d-inline-block"><a href="#"><img src="images/fb.png" class="img-fluid"></a></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.1.0/anime.min.js"></script>
+    <script>
+        var el = document.querySelectorAll('.parent .block');
+        var next = document.querySelector('#next');
+        var prev = document.querySelector('#prev');
+
+        next.addEventListener('click', newactiveitem);
+        prev.addEventListener('click', prevactiveitem);
+
+
+        function carouselnodes() {
+            var elm = document.querySelector('.parent');
+
+            var cnodes = elm.childNodes;
+            var nodes = [];
+            cnodes.forEach((e, i) => {
+                if (i % 2 != 0)
+                    nodes.push(e);
+            });
+
+            return nodes;
+        }
+
+        function translate300(i) {
+            var trans = anime({
+                targets: el,
+                translateX: i,
+            });
+        }
+
+
+
+        function prevactiveitem() {
+            var newnodes = carouselnodes();
+            var active = document.querySelector('.active');
+
+            for (i = 0; i < newnodes.length; i++) {
+                if (active == newnodes[i] && newnodes[i - 1]) {
+                    newnodes[i].classList.remove('active');
+                    newnodes[i - 1].classList.add('active');
+                    new translate300(((i) * (-300)) + 300);
+                }
+            }
+
+        }
+
+        function newactiveitem() {
+            var newnodes = carouselnodes();
+            var active = document.querySelector('.active');
+
+            for (i = 0; i < newnodes.length; i++) {
+                if (active == newnodes[i] && newnodes[i + 1]) {
+                    newnodes[i].classList.remove('active');
+                    newnodes[i + 1].classList.add('active');
+                    new translate300(((i) * (-300)) - 300);
+
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .parent {
+            max-width: 400px;
+            white-space: nowrap;
+            overflow-x: hidden;
+            padding-left: 90px;
+        }
+
+        .block {
+            width: 300px;
+            height: 300px;
+            background: red;
+            display: inline-block;
+            opacity: 0.2;
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        .carousel-wrapper {
+            max-width: 500px;
+            position: relative;
+        }
+
+        #next {
+            position: absolute;
+            top: 50%;
+            right: 5%;
+        }
+
+        #prev {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="carousel-wrapper">
+        <div class="parent">
+            <div class="block active"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+
+        <a href="#" id="next">></a>
+        <a href="#" id="prev"><</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.1.0/anime.min.js"></script>
+    <script>
+        var el = document.querySelectorAll('.parent .block');
+        var next = document.querySelector('#next');
+        var prev = document.querySelector('#prev');
+
+        next.addEventListener('click', newactiveitem);
+        prev.addEventListener('click', prevactiveitem);
+        
+
+        function carouselnodes() {
+            var elm = document.querySelector('.parent');
+
+            var cnodes = elm.childNodes;
+            var nodes = [];
+            cnodes.forEach((e, i) => {
+                if (i % 2 != 0)
+                    nodes.push(e);
+            });
+
+            return nodes;
+        }
+
+        function translate300(i) {
+            var trans = anime({
+                targets: el,
+                translateX: i,
+            });
+        }
+
+        
+
+        function prevactiveitem() {
+            var newnodes = carouselnodes();
+            var active = document.querySelector('.active');
+            
+            for (i = 0; i < newnodes.length; i++) {
+                if (active == newnodes[i] && newnodes[i - 1]) {
+                    newnodes[i].classList.remove('active');
+                    newnodes[i - 1].classList.add('active');
+                    new translate300(((i) * (-300)) + 300);
+                }
+            }
+
+        }
+
+        function newactiveitem() {
+            var newnodes = carouselnodes();
+            var active = document.querySelector('.active');
+            
+            for (i = 0; i < newnodes.length; i++) {
+                if (active == newnodes[i] && newnodes[i + 1]) {
+                    newnodes[i].classList.remove('active');
+                    newnodes[i + 1].classList.add('active');
+                    new translate300(((i) * (-300)) - 300);
+
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

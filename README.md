@@ -5,3 +5,4 @@ Files relevant under ./app
 - Landing Page => index.html
 - Login Page => login.html
 - Product Page => product-page.html
+- Product Info Page => product-info.html
